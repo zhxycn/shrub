@@ -1,7 +1,13 @@
-import { Elysia } from "elysia";
+import cluster from 'node:cluster';
+import os from 'node:os';
+import process from 'node:process';
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
-
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+if (cluster.isPrimary) {
+  const cpus = os.availableParallelism();
+  for (let i = 0; i < cpus; i++) {
+    cluster.fork();
+  }
+} else {
+  await import('./server');
+  console.log(`Worker ${process.pid} started`);
+}
