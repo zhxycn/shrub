@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  shrub:
+    image: zhxycn/shrub:latest
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    restart: always
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - ./data:/data
+    ports:
+      - "6379:6379"
+    restart: always
