@@ -72,7 +72,7 @@ Create a `.env` file with [.env.example](../.env.example) as template.
 Then run:
 
 ```sh
-docker run --env-file .env -d -p 3000:3000 -v $(pwd)/data:/app/data zhxycn/shrub:latest
+docker run --env-file .env -d -p 3000:3000 zhxycn/shrub:latest
 ```
 
 ### Run from source
