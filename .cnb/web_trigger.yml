@@ -1,0 +1,10 @@
+branch:
+  - reg: main
+    buttons:
+      - name: Docker
+        description: Build and Push Docker image
+        event: web_trigger_docker
+        permissions:
+          roles:
+            - owner
+            - master

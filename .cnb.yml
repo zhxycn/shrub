@@ -1,0 +1,19 @@
+main:
+  web_trigger_docker:
+    - services:
+        - docker
+      imports:
+        - https://cnb.cool/catnya/secrets/-/blob/main/docker.yml
+      stages:
+        - name: Build
+          script: docker build -t ${CNB_REPO_NAME_LOWERCASE}:latest .
+        - name: Tag for CNB registry
+          script: docker tag ${CNB_REPO_NAME_LOWERCASE}:latest ${CNB_DOCKER_REGISTRY}/${CNB_REPO_SLUG_LOWERCASE}:latest
+        - name: Push to CNB registry
+          script: docker push ${CNB_DOCKER_REGISTRY}/${CNB_REPO_SLUG_LOWERCASE}:latest
+        - name: Login to Docker Hub
+          script: echo "${DOCKER_HUB_PASSWORD}" | docker login -u "${DOCKER_HUB_USERNAME}" --password-stdin
+        - name: Tag for Docker Hub
+          script: docker tag ${CNB_REPO_NAME_LOWERCASE}:latest ${DOCKER_HUB_USERNAME}/${CNB_REPO_NAME_LOWERCASE}:latest
+        - name: Push to Docker Hub
+          script: docker push ${DOCKER_HUB_USERNAME}/${CNB_REPO_NAME_LOWERCASE}:latest
