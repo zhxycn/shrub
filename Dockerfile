@@ -32,7 +32,7 @@ ENV NODE_ENV=production \
 	REDIS_PASSWORD= \
 	DEFAULT_TTL=86400 \
 	BASE_URL=http://localhost:3000 \
-	AUTH_SECRET=secret
+	AUTH_SECRET=
 
 CMD ["./server"]
 

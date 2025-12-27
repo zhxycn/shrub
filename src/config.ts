@@ -9,6 +9,6 @@ export const config = {
     password: process.env.REDIS_PASSWORD || '',
   },
   auth: {
-    secret: process.env.AUTH_SECRET || 'secret',
+    secret: process.env.AUTH_SECRET || '',
   },
 };
