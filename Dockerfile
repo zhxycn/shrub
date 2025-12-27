@@ -24,14 +24,15 @@ WORKDIR /app
 
 COPY --from=build /app/server server
 
-ENV NODE_ENV=production
-ENV PORT=3000
-ENV REDIS_HOST=redis
-ENV REDIS_PORT=6379
-ENV REDIS_DB=0
-ENV DEFAULT_TTL=86400
-ENV BASE_URL=http://localhost:${PORT}
-ENV AUTH_SECRET=secret
+ENV NODE_ENV=production \
+	PORT=3000 \
+	REDIS_HOST=redis \
+	REDIS_PORT=6379 \
+	REDIS_DB=0 \
+	REDIS_PASSWORD= \
+	DEFAULT_TTL=86400 \
+	BASE_URL=http://localhost:3000 \
+	AUTH_SECRET=secret
 
 CMD ["./server"]
 
