@@ -1,5 +1,5 @@
 import { t, type Context } from 'elysia';
-import { redis } from '../data/redis';
+import { redis } from '../../data/redis';
 
 export const removeSchema = {
   params: t.Object({

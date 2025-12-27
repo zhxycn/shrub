@@ -1,7 +1,7 @@
 import { t } from 'elysia';
 import { customAlphabet } from 'nanoid';
-import { config } from '../config';
-import { redis } from '../data/redis';
+import { config } from '../../config';
+import { redis } from '../../data/redis';
 
 const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 4);
 

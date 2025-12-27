@@ -1,6 +1,6 @@
 import { NotFoundError, t } from 'elysia';
 import { fileTypeFromBuffer } from 'file-type';
-import { redis } from '../data/redis';
+import { redis } from '../../data/redis';
 
 export const getSchema = {
   params: t.Object({
