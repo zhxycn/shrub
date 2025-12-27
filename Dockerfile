@@ -31,6 +31,7 @@ ENV REDIS_PORT=6379
 ENV REDIS_DB=0
 ENV DEFAULT_TTL=86400
 ENV BASE_URL=http://localhost:${PORT}
+ENV AUTH_SECRET=secret
 
 CMD ["./server"]
 

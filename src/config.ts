@@ -7,4 +7,7 @@ export const config = {
     port: parseInt(process.env.REDIS_PORT || '6379'),
     db: parseInt(process.env.REDIS_DB || '0'),
   },
+  auth: {
+    secret: process.env.AUTH_SECRET || 'secret',
+  },
 };

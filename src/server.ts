@@ -1,13 +1,19 @@
 import { Elysia } from 'elysia';
 import { openapi } from '@elysiajs/openapi';
 import { config } from './config';
-import { create, createSchema } from './modules/create';
-import { get, getSchema } from './modules/get';
-import { remove, removeSchema } from './modules/remove';
+import { auth, guard } from './modules/auth';
+import { create, createSchema, get, getSchema, remove, removeSchema } from './modules/app';
 
 export const app = new Elysia()
   .use(openapi())
-  .post('/', create, createSchema)
+  .use(auth)
+  .post('/', create, {
+    ...createSchema,
+    beforeHandle: guard,
+  })
   .get('/:code', get, getSchema)
-  .delete('/:code', remove, removeSchema)
+  .delete('/:code', remove, {
+    ...removeSchema,
+    beforeHandle: guard,
+  })
   .listen(config.port);
