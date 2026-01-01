@@ -1,9 +1,19 @@
+$:
+  vscode:
+    - docker:
+        image: docker.cnb.cool/zhxycn/env:latest
+      services:
+        - vscode
+        - docker
+      env:
+        CNB_WELCOME_EXECUTE_COMMAND: cp .env.example .env && docker-compose up -d --build && docker ps
+
 main:
   web_trigger_docker:
     - services:
         - docker
       imports:
-        - https://cnb.cool/catnya/secrets/-/blob/main/docker.yml
+        - https://cnb.cool/zhxycn/secrets/-/blob/main/docker.yml
       stages:
         - name: Build
           script: docker build -t ${CNB_REPO_NAME_LOWERCASE}:latest .
